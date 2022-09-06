@@ -1,5 +1,5 @@
 ---
-- name: "Task details"
+- name: "Task details.."
   vars:
     msg: |
       Install simple OpenVPN based on

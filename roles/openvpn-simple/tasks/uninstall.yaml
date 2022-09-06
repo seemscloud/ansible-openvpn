@@ -1,5 +1,5 @@
 ---
-- name: "Task details"
+- name: "Task details.."
   vars:
     msg: |
       Uninstall simple OpenVPN based on
@@ -12,10 +12,29 @@
   file:
     path: /tmp/openvpn-simple.sh
     state: absent
-  tags: [ install ]
+  tags: [ uninstall ]
 
 - name: "Download simple OpenVPN script.."
   get_url:
     url: "{{ deploy.simple.script }}"
     dest: /tmp/openvpn-simple.sh
-  tags: [ install ]
+  tags: [ uninstall ]
+
+- name: "Uninstall simple OpenVPN server.."
+  environment:
+    REMOVE: "y"
+  command: /bin/bash /tmp/openvpn-simple.sh
+  register: uninstallResult
+  tags: [ uninstall ]
+
+- name: "Result: Install simple OpenVPN server.."
+  debug:
+    msg: "{{ uninstallResult }}"
+  tags: [ uninstall-debug ]
+  when: uninstallResult is defined
+
+- name: "Ensure '/tmp/openvpn-simple.sh' is absent.."
+  file:
+    path: /tmp/openvpn-simple.sh
+    state: absent
+  tags: [ uninstall ]
