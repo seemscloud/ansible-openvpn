@@ -17,7 +17,7 @@
 
 ##### Execute
 
-Install:
+###### Install:
 
 ```bash
 ansible-playbook --inventory inventories/prod/inventories.yaml \
@@ -26,7 +26,7 @@ ansible-playbook --inventory inventories/prod/inventories.yaml \
                  roles/openvpn-simple/install.yaml
 ```
 
-Uninstall:
+###### Uninstall:
 
 ```bash
 ansible-playbook --inventory inventories/prod/inventories.yaml \

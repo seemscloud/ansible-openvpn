@@ -1,4 +1,5 @@
 ---
+# NOT WORKING BECAUSE https://github.com/angristan/openvpn-install/blob/master/openvpn-install.sh#L1229
 - hosts: openvpn
   gather_facts: no
 

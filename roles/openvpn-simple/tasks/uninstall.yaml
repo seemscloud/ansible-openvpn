@@ -22,7 +22,7 @@
 
 - name: "Uninstall simple OpenVPN server.."
   environment:
-    REMOVE: "y"
+    MENU_OPTION: "3"
   command: /bin/bash /tmp/openvpn-simple.sh
   register: uninstallResult
   tags: [ uninstall ]
