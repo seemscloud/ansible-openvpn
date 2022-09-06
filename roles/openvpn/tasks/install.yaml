@@ -1,0 +1,11 @@
+---
+- name: Install 'OpenVPN' server
+  apt:
+    name: openvpn
+    state: present
+
+- name: Disable default service
+  systemd:
+    name: openvpn
+    enabled: no
+    state: stopped

@@ -1,0 +1,30 @@
+all:
+  vars:
+    ansible_user: terraform
+    ansible_connection: ssh
+    ansible_python_interpreter: python3
+  children:
+    openvpn:
+      vars:
+        ansible_become: yes
+        ansible_become_user: root
+        ansible_become_method: sudo
+      children:
+        europe-central2-a:
+          hosts:
+            bar0:
+              ansible_host: 10.100.20.11
+            foo0:
+              ansible_host: 10.100.10.4
+        europe-central2-b:
+          hosts:
+            bar1:
+              ansible_host: 10.100.20.12
+            foo1:
+              ansible_host: 10.100.10.3
+        europe-central2-c:
+          hosts:
+            bar2:
+              ansible_host: 10.100.20.10
+            foo2:
+              ansible_host: 10.100.10.2

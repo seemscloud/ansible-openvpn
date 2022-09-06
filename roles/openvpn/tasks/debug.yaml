@@ -1,0 +1,3 @@
+- name: Print debug example message
+  debug:
+    msg: "{{ debug.message }}"

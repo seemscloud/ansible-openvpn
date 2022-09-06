@@ -1,0 +1,2 @@
+debug:
+  message: "Using config file 'openvpn.yaml'"
