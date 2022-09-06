@@ -1,0 +1,21 @@
+---
+- name: "Task details"
+  vars:
+    msg: |
+      Uninstall simple OpenVPN based on
+      {{ deploy.simple.script }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  tags: [ uninstall-debug ]
+
+- name: "Ensure '/tmp/openvpn-simple.sh' is absent"
+  file:
+    path: /tmp/openvpn-simple.sh
+    state: absent
+  tags: [ install ]
+
+- name: "Download simple OpenVPN script.."
+  get_url:
+    url: "{{ deploy.simple.script }}"
+    dest: /tmp/openvpn-simple.sh
+  tags: [ install ]

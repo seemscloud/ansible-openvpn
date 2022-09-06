@@ -1,16 +1,19 @@
 ---
 - import_tasks: debug.yaml
+  tags: [ debug ]
 
-- import_tasks: simple.yaml
+- import_tasks: install.yaml
   when: >
     deploy.enabled is defined and
     deploy.simple.enabled is defined and
     deploy.enabled|bool == true and
     deploy.simple.enabled|bool == true
+  tags: [ install ]
 
-- import_tasks: custom.yaml
+- import_tasks: uninstall.yaml
   when: >
     deploy.enabled is defined and
-    deploy.custom.enabled is defined and
+    deploy.simple.enabled is defined and
     deploy.enabled|bool == true and
-    deploy.custom.enabled|bool == true
+    deploy.simple.enabled|bool == true
+  tags: [ uninstall ]

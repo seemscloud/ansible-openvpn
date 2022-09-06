@@ -1,16 +1,26 @@
 ---
-- name: Task details
+- name: "Task details"
   vars:
     msg: |
-      Simple OpenVPN deployment based on
+      Install simple OpenVPN based on
       {{ deploy.simple.script }}
   debug:
     msg: "{{ msg.split('\n') }}"
+  tags: [ install-debug ]
+
+- name: "Ensure '/tmp/openvpn-simple.sh' is absent"
+  file:
+    path: /tmp/openvpn-simple.sh
+    state: absent
   tags: [ install ]
 
-- import_tasks: simple-get.yaml
+- name: "Download simple OpenVPN script.."
+  get_url:
+    url: "{{ deploy.simple.script }}"
+    dest: /tmp/openvpn-simple.sh
+  tags: [ install ]
 
-- name: Install simple OpenVPN server.
+- name: "Install simple OpenVPN server.."
   environment:
     AUTO_INSTALL: "{{ deploy.simple.envs.auto_install }}"
     APPROVE_INSTALL: "{{ deploy.simple.envs.approve_install }}"
@@ -26,7 +36,14 @@
   register: installResult
   tags: [ install ]
 
-- name: Install OpenVPN result
+- name: "Result: Install simple OpenVPN server.."
   debug:
     msg: "{{ installResult }}"
-  tags: [ debug ]
+  tags: [ install-debug ]
+  when: installResult is defined
+
+- name: "Ensure '/tmp/openvpn-simple.sh' is absent.."
+  file:
+    path: /tmp/openvpn-simple.sh
+    state: absent
+  tags: [ install ]
