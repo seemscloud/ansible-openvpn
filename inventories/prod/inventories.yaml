@@ -26,5 +26,4 @@ all:
           hosts:
             bar2:
               ansible_host: 10.100.20.10
-            foo2:
               ansible_host: 10.100.10.2

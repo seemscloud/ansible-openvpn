@@ -1,0 +1,32 @@
+---
+- name: Task details
+  vars:
+    msg: |
+      Simple OpenVPN deployment based on
+      {{ deploy.simple.script }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  tags: [ install ]
+
+- import_tasks: simple-get.yaml
+
+- name: Install simple OpenVPN server.
+  environment:
+    AUTO_INSTALL: "{{ deploy.simple.envs.auto_install }}"
+    APPROVE_INSTALL: "{{ deploy.simple.envs.approve_install }}"
+    IPV6_SUPPORT: "{{ deploy.simple.envs.ipv6_support }}"
+    PORT_CHOICE: "{{ deploy.simple.envs.port_choice }}"
+    PROTOCOL_CHOICE: "{{ deploy.simple.envs.protocol_choice }}"
+    DNS: "{{ deploy.simple.envs.dns }}"
+    COMPRESSION_ENABLED: "{{ deploy.simple.envs.compression_enabled }}"
+    CUSTOMIZE_ENC: "{{ deploy.simple.envs.customize_enc }}"
+    CLIENT: "{{ deploy.simple.envs.client }}"
+    PASS: "{{ deploy.simple.envs.pass }}"
+  command: /bin/bash /tmp/openvpn-simple.sh
+  register: installResult
+  tags: [ install ]
+
+- name: Install OpenVPN result
+  debug:
+    msg: "{{ installResult }}"
+  tags: [ debug ]

@@ -1,3 +1,16 @@
 ---
 - import_tasks: debug.yaml
-- import_tasks: install.yaml
+
+- import_tasks: simple.yaml
+  when: >
+    deploy.enabled is defined and
+    deploy.simple.enabled is defined and
+    deploy.enabled|bool == true and
+    deploy.simple.enabled|bool == true
+
+- import_tasks: custom.yaml
+  when: >
+    deploy.enabled is defined and
+    deploy.custom.enabled is defined and
+    deploy.enabled|bool == true and
+    deploy.custom.enabled|bool == true

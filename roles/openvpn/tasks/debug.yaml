@@ -1,3 +1,4 @@
-- name: Print debug example message
+- name: Print debug message
   debug:
     msg: "{{ debug.message }}"
+    tags: [ debug ]

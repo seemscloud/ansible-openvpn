@@ -1,0 +1,8 @@
+---
+- name: Task details..
+  vars:
+    msg: |
+      Custom Openvpn deployment
+  debug:
+    msg: "{{ msg.split('\n') }}"
+    tags: [ install ]

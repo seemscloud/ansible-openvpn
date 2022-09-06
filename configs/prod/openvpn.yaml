@@ -1,2 +1,25 @@
 debug:
-  message: "Using config file 'openvpn.yaml'"
+  message: Using config file 'openvpn.yaml'
+
+deploy:
+  enabled: true
+  simple:
+    enabled: true
+    script: https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+    envs:
+      auto_install: y
+      approve_install: y
+      ipv6_support: n
+      port_choice: 1
+      protocol_choice: 1
+      dns: 1
+      compression_enabled: n
+      customize_enc: n
+      client: client
+      pass: 1
+  custom:
+    enabled: false
+
+simple: { }
+
+custom: { }
